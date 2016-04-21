@@ -1,4 +1,4 @@
-﻿Purpose
+Purpose
 The purpose of this file is to illustrate the ability to connect and use a PIR sensor to RPi and use OSC messaging through Python script to address Supercollider to produce sound, all within RPi.
 
 Prerequisites
@@ -192,6 +192,7 @@ cd home/pi
 sudo python pirtest.py
 cd /
 (I used "pirtest.py" you can used your file here)
+
 Ok now we need to make these 2 files executable:
 1. chmod +x !/autostart.sh
 2. chmod 755 pytholauncher.sh
@@ -204,8 +205,9 @@ Next step is to tell the machine to runs these files at reboot:
 Ctrl-o #to save
 Ctrl-x #to exit
 
-(6) Reboot et voilà**bold**
+(6) Reboot et voilà
 Now that is all set it is time to reboot.
+
 1. sudo reboot
 (after reboot the project should be working, if not go through the steps again in case you missed something)
 
