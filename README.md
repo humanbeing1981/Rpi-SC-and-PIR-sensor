@@ -47,8 +47,12 @@ The purpose of this file is to illustrate the ability to connect and use a PIR s
 9. sudo nano /etc/security/limits.conf #and add the following two lines at the end:
 @audio - memlock 256000
 @audio - rtprio 75 
-1. #Ctrl-o to save Ctrl-x to exit
-step5 (compile & install sc master)
+```
+Ctrl-o to save Ctrl-x to exit
+
+##step5 (compile & install sc master)
+
+```
 1. git clone --recursive git://github.com/supercollider/supercollider.git supercollider
 2. cd supercollider
 3. git submodule init && git submodule update
@@ -64,6 +68,7 @@ step5 (compile & install sc master)
 13. sudo mv /usr/local/share/SuperCollider/SCClassLibrary/Common/GUI /usr/local/share/SuperCollider/SCClassLibrary/scide_scqt/GUI
 14. sudo mv /usr/local/share/SuperCollider/SCClassLibrary/JITLib/GUI /usr/local/share/SuperCollider/SCClassLibrary/scide_scqt/JITLibGUI
 ```
+
 ##step6 (start jack & sclang & test)
 ```
 1. jackd -P75 -dalsa -dhw:1 -p1024 -n3 -s -r44100 & #edit -dhw:1 (to match your soundcard. usually it is 1 for usb)
