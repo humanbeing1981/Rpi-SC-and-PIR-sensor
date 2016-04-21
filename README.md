@@ -147,8 +147,9 @@ ctrl x #to exit
 1. sudo nano filename.scd # choose a filename ( I used "mycode.scd")
 2. enter the following SC code (or your code):
 
-```javascript(
-s.waitForBoot{
+```javascript
+(
+Server.default.waitForBoot{
 Task({
 SynthDef.new(\noise, {
 	arg freq = 800, gate = 0,
