@@ -170,6 +170,7 @@ OSCdef.new(
 );
 }
 )
+
 Ctrl-o #to save
 Ctrl-x #to exit
 
@@ -183,36 +184,43 @@ Now we will proceed to the final step. We need to create 2 files (autostart.sh a
 In the terminal type:
 
 1. sudo nano ~/autostart.sh #and add the following lines:
--#!/bin/bash
--/usr/local/bin/jackd -P75 -dalsa -dhw:1 -p1024 -n3 -s -r44100 &
--su root -c "sclang -D /home/pi/mycode.scd"
+
+1. #!/bin/bash
+2. /usr/local/bin/jackd -P75 -dalsa -dhw:1 -p1024 -n3 -s -r44100 &
+3. su root -c "sclang -D /home/pi/mycode.scd"
 
 (I used "mycode.scd", you can use your filename)
 Ctrl-o #to save
 Ctrl-x #to exit
 
 2. sudo nano pythonlauncher.sh #and add the following lines:
--#!/bin/sh
--pythonlauncher.sh
--cd /
--cd home/pi
--sudo python pirtest.py
--cd /
+
+1. #!/bin/sh
+2. pythonlauncher.sh
+3. cd /
+4. cd home/pi
+5. sudo python pirtest.py
+6. cd /
+
 (I used "pirtest.py" you can used your file here)
 
 Ok now we need to make these 2 files executable:
+
 1. chmod +x !/autostart.sh
 2. chmod 755 pytholauncher.sh
 
 Next step is to tell the machine to runs these files at reboot:
+
 1. sudo crontab -e 
 2. paste the following lines:
 · @reboot /bin/bash /home/pi/autostart.sh
 · @reboot /bin/sh /home/pi/pythonlauncher.sh
+
 Ctrl-o #to save
 Ctrl-x #to exit
 
 ##(6) Reboot et voilà
+
 Now that is all set it is time to reboot.
 
 1. sudo reboot
