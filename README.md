@@ -14,27 +14,27 @@ The purpose of this file is to illustrate the ability to connect and use a PIR s
 ##Setup Steps
 (1) Compiling SC master natively on Raspberry Pi Raspbian Jessie
 
-##step1 (hardware setup)
+###step1 (hardware setup)
 ```
 1. connect an ethernet cable from the network router to the rpi 
 2. insert the sd card and usb soundcard 
 3. last connect usb power from a 5V@1A power supply
 ```
 
-##step2 (login & preparations)
+###step2 (login & preparations)
 ```
 1. ssh pi@raspberrypi.local #from your laptop, default password is raspberry 
 2. sudo raspi-config #change password, expand file system, reboot and log in again with ssh 
 ```
 
-##step3 (update the system, install required libraries & compilers)
+###step3 (update the system, install required libraries & compilers)
 ```
 1. sudo apt-get update
 2. sudo apt-get upgrade
 3. sudo apt-get install alsa-base libicu-dev libasound2-dev libsamplerate0-dev libsndfile1-dev libreadline-dev libxt-dev libudev-dev libavahi-client-dev libfftw3-dev cmake git gcc-4.8 g++-4.8 
 ```
 
-##step4 (compile & install jackd (no d-bus) )
+###step4 (compile & install jackd (no d-bus) )
 ```
 1. git clone git://github.com/jackaudio/jack2.git --depth 1
 2. cd jack2
@@ -50,7 +50,7 @@ The purpose of this file is to illustrate the ability to connect and use a PIR s
 ```
 Ctrl-o to save Ctrl-x to exit
 
-##step5 (compile & install sc master)
+###step5 (compile & install sc master)
 
 ```
 1. git clone --recursive git://github.com/supercollider/supercollider.git supercollider
@@ -69,7 +69,7 @@ Ctrl-o to save Ctrl-x to exit
 14. sudo mv /usr/local/share/SuperCollider/SCClassLibrary/JITLib/GUI /usr/local/share/SuperCollider/SCClassLibrary/scide_scqt/JITLibGUI
 ```
 
-##step6 (start jack & sclang & test)
+###step6 (start jack & sclang & test)
 ```
 1. jackd -P75 -dalsa -dhw:1 -p1024 -n3 -s -r44100 & #edit -dhw:1 (to match your soundcard. usually it is 1 for usb)
 2. sclang (should start sc and compile the class library with only 3 harmless class overwrites warnings)
