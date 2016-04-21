@@ -209,7 +209,7 @@ In the terminal type:
 
 1. sudo nano ~/autostart.sh #and add the following lines:
 
-```
+```javascript
 #!/bin/bash
 /usr/local/bin/jackd -P75 -dalsa -dhw:1 -p1024 -n3 -s -r44100 &
 su root -c "sclang -D /home/pi/mycode.scd"
@@ -222,7 +222,7 @@ Ctrl-x #to exit
 
 2. sudo nano pythonlauncher.sh #and add the following lines:
 
-```
+```javascript
 #!/bin/sh
 pythonlauncher.sh
 cd /
@@ -235,14 +235,14 @@ cd /
 
 Ok now we need to make these 2 files executable:
 
-```
+```javascript
 1. chmod +x !/autostart.sh
 2. chmod 755 pytholauncher.sh
 ```
 
 Next step is to tell the machine to runs these files at reboot:
 
-```Plain Text
+```javascript
 1. sudo crontab -e 
 2. paste the following lines:
 · @reboot /bin/bash /home/pi/autostart.sh
@@ -256,7 +256,7 @@ Ctrl-x #to exit
 
 Now that is all set it is time to reboot.
 
-```
+```javascript
 1. sudo reboot
 ```
 (after reboot the project should be working, if not go through the steps again in case you missed something)
