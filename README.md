@@ -89,6 +89,7 @@ Open the terminal and type the following:
 1. sudo nano filename.py #opens a blank sheet in Python named filename.py (I used “pirtest.py”)
 2. paste the following code into Python
 
+```Python
 import RPi.GPIO as GPIO
 import time
 import OSC
@@ -136,6 +137,9 @@ if  current_state != previous_state:
 		new_state = "HIGH" if current_state else "LOW"
 
 		print("GPIO pin %s is %s" % (sensor, new_state))
+		<b>tag</b>
+		```
+		
 ctrl o #to save
 ctrl x #to exit
 
@@ -170,6 +174,7 @@ OSCdef.new(
 );
 }
 )
+<b>tag</b>
 ```
 
 
