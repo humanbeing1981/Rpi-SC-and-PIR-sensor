@@ -11,8 +11,8 @@ The purpose of this file is to illustrate the ability to connect and use a PIR s
 7. laptop connected to same network as the rpi 
 8. patience
 
-##Setup Steps
-(1) Compiling SC master natively on Raspberry Pi Raspbian Jessie
+#Setup Steps
+##(1) Compiling SC master natively on Raspberry Pi Raspbian Jessie
 
 ###step1 (hardware setup)
 ```
