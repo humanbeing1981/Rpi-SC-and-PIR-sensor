@@ -66,17 +66,17 @@ step5 (compile & install sc master)
 ```
 ##step6 (start jack & sclang & test)
 ```
-1. jackd -P75 -dalsa -dhw:1 -p1024 -n3 -s -r44100 & #edit -dhw:1 to match your soundcard. usually it is 1 for usb
-2. sclang #should start sc and compile the class library with only 3 harmless class overwrites warnings
-s.boot #should boot the server
-a= {SinOsc.ar([400, 404])}.play #should play sound in both channels
-a.free
-{1000000.do{2.5.sqrt}}.bench #benchmark: ~0.89 for rpi2, ~3.1 for rpi1
-a= {Mix(50.collect{RLPF.ar(SinOsc.ar)});DC.ar(0)}.play #benchmark
-s.dump #avgCPU should show ~19% for rpi2 and ~73% for rpi1
-a.free
-exit #quit sclang
-pkill jackd #quit jackd
+1. jackd -P75 -dalsa -dhw:1 -p1024 -n3 -s -r44100 & #edit -dhw:1 (to match your soundcard. usually it is 1 for usb)
+2. sclang (should start sc and compile the class library with only 3 harmless class overwrites warnings)
+3. s.boot #should boot the server
+4. a= {SinOsc.ar([400, 404])}.play (should play sound in both channels)
+5. a.free
+6. {1000000.do{2.5.sqrt}}.bench (benchmark: ~0.89 for rpi2, ~3.1 for rpi1)
+7. a= {Mix(50.collect{RLPF.ar(SinOsc.ar)});DC.ar(0)}.play (benchmark)
+8. s.dump (avgCPU should show ~19% for rpi2 and ~73% for rpi1)
+9. a.free
+10. exit #quit sclang
+11. pkill jackd #quit jackd
 ```
 
 ##(2) Python - pyOSC module install
@@ -214,6 +214,7 @@ Ctrl-o #to save
 Ctrl-x #to exit
 
 2. sudo nano pythonlauncher.sh #and add the following lines:
+
 ```
 #!/bin/sh
 pythonlauncher.sh
@@ -222,20 +223,25 @@ cd home/pi
 sudo python pirtest.py
 cd /
 ```
+
 (I used "pirtest.py" you can used your file here)
 
 Ok now we need to make these 2 files executable:
+
 ```
 1. chmod +x !/autostart.sh
 2. chmod 755 pytholauncher.sh
 ```
+
 Next step is to tell the machine to runs these files at reboot:
+
 ```
 1. sudo crontab -e 
 2. paste the following lines:
 · @reboot /bin/bash /home/pi/autostart.sh
 · @reboot /bin/sh /home/pi/pythonlauncher.sh
 ```
+
 Ctrl-o #to save
 Ctrl-x #to exit
 
