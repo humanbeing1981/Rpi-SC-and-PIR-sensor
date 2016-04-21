@@ -88,6 +88,7 @@ Now it is time to write the code in Python so the PIR OSC messages can be sent t
 Open the terminal and type the following:
 1. sudo nano filename.py #opens a blank sheet in Python named filename.py (I used “pirtest.py”)
 2. paste the following code into Python
+
 import RPi.GPIO as GPIO
 import time
 import OSC
@@ -142,6 +143,7 @@ ctrl x #to exit
 
 1. sudo nano filename.scd # choose a filename ( I used "mycode.scd")
 2. enter the following SC code (or your code):
+
 (
 s.waitForBoot{
 Task({
@@ -181,20 +183,21 @@ Now we will proceed to the final step. We need to create 2 files (autostart.sh a
 In the terminal type:
 
 1. sudo nano ~/autostart.sh #and add the following lines:
-#!/bin/bash
-/usr/local/bin/jackd -P75 -dalsa -dhw:1 -p1024 -n3 -s -r44100 &
-su root -c "sclang -D /home/pi/mycode.scd"
+-#!/bin/bash
+-/usr/local/bin/jackd -P75 -dalsa -dhw:1 -p1024 -n3 -s -r44100 &
+-su root -c "sclang -D /home/pi/mycode.scd"
+
 (I used "mycode.scd", you can use your filename)
 Ctrl-o #to save
 Ctrl-x #to exit
 
 2. sudo nano pythonlauncher.sh #and add the following lines:
-#!/bin/sh
-pythonlauncher.sh
-cd /
-cd home/pi
-sudo python pirtest.py
-cd /
+-#!/bin/sh
+-pythonlauncher.sh
+-cd /
+-cd home/pi
+-sudo python pirtest.py
+-cd /
 (I used "pirtest.py" you can used your file here)
 
 Ok now we need to make these 2 files executable:
