@@ -137,7 +137,6 @@ if  current_state != previous_state:
 		new_state = "HIGH" if current_state else "LOW"
 
 		print("GPIO pin %s is %s" % (sensor, new_state))
-		<b>tag</b>
 		```
 		
 ctrl o #to save
@@ -174,7 +173,6 @@ OSCdef.new(
 );
 }
 )
-<b>tag</b>
 ```
 
 
