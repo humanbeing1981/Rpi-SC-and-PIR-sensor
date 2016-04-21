@@ -15,27 +15,31 @@ The purpose of this file is to illustrate the ability to connect and use a PIR s
 ##(1) Compiling SC master natively on Raspberry Pi Raspbian Jessie
 
 ###step1 (hardware setup)
-```
+
+```javascript
 1. connect an ethernet cable from the network router to the rpi 
 2. insert the sd card and usb soundcard 
 3. last connect usb power from a 5V@1A power supply
 ```
 
 ###step2 (login & preparations)
-```
+
+```javascript
 1. ssh pi@raspberrypi.local #from your laptop, default password is raspberry 
 2. sudo raspi-config #change password, expand file system, reboot and log in again with ssh 
 ```
 
 ###step3 (update the system, install required libraries & compilers)
-```
+
+```javascript
 1. sudo apt-get update
 2. sudo apt-get upgrade
 3. sudo apt-get install alsa-base libicu-dev libasound2-dev libsamplerate0-dev libsndfile1-dev libreadline-dev libxt-dev libudev-dev libavahi-client-dev libfftw3-dev cmake git gcc-4.8 g++-4.8 
 ```
 
 ###step4 (compile & install jackd (no d-bus) )
-```
+
+```javascript
 1. git clone git://github.com/jackaudio/jack2.git --depth 1
 2. cd jack2
 3. ./waf configure --alsa #note: here we use the default gcc-4.9
@@ -52,7 +56,7 @@ Ctrl-o to save Ctrl-x to exit
 
 ###step5 (compile & install sc master)
 
-```
+```javascript
 1. git clone --recursive git://github.com/supercollider/supercollider.git supercollider
 2. cd supercollider
 3. git submodule init && git submodule update
@@ -70,7 +74,8 @@ Ctrl-o to save Ctrl-x to exit
 ```
 
 ###step6 (start jack & sclang & test)
-```
+
+```javascript
 1. jackd -P75 -dalsa -dhw:1 -p1024 -n3 -s -r44100 & #edit -dhw:1 (to match your soundcard. usually it is 1 for usb)
 2. sclang (should start sc and compile the class library with only 3 harmless class overwrites warnings)
 3. s.boot #should boot the server
@@ -89,7 +94,8 @@ Python - pyOSC module install
 You need pyOSC module in Python to send OSC messages to SC
 
 Open the terminal and type the following:
-```
+
+```javascript
 1. ssh pi@raspberrypi.local #to log into pi (default username: pi and password: raspberry)
 2. sudo apt-get update
 3. sudo apt-get upgrade
@@ -101,7 +107,8 @@ Open the terminal and type the following:
 Now it is time to write the code in Python so the PIR OSC messages can be sent to SC server locally.
 
 Open the terminal and type the following:
-```
+
+```javascript
 1. sudo nano filename.py 
 ```
 opens a blank sheet in Python named filename.py (I used “pirtest.py”)
@@ -166,7 +173,7 @@ ctrl x #to exit
 1. sudo nano filename.scd # choose a filename ( I used "mycode.scd")
 2. enter the following SC code (or your code):
 
-```
+```javascript
 (
 Server.default.waitForBoot{
 Task({
