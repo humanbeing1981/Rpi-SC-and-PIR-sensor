@@ -204,15 +204,17 @@ Now it is time to program RPi to autostart the scripts in Python and SuperCollid
 1. filename.scd (I have mycode.scd)
 2. filename.py (i have pirtest.py)
 
-Now we will proceed to the final step. We need to create 2 files (autostart.sh and pythonlauncher.sh)
+Now we will proceed to the next step. We need to create 2 files (autostart.sh and pythonlauncher.sh)
 In the terminal type:
 
 1. sudo nano ~/autostart.sh #and add the following lines:
+
 ```
 #!/bin/bash
 /usr/local/bin/jackd -P75 -dalsa -dhw:1 -p1024 -n3 -s -r44100 &
 su root -c "sclang -D /home/pi/mycode.scd"
 ```
+
 (I used "mycode.scd", you can use your filename)
 
 Ctrl-o #to save
@@ -253,6 +255,7 @@ Ctrl-x #to exit
 ##(6) Reboot et voilà
 
 Now that is all set it is time to reboot.
+
 ```
 1. sudo reboot
 ```
