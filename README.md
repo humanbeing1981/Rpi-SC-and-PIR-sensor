@@ -242,7 +242,7 @@ Ok now we need to make these 2 files executable:
 
 Next step is to tell the machine to runs these files at reboot:
 
-```
+```Plain Text
 1. sudo crontab -e 
 2. paste the following lines:
 · @reboot /bin/bash /home/pi/autostart.sh
