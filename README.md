@@ -15,20 +15,27 @@ The purpose of this file is to illustrate the ability to connect and use a PIR s
 (1) Compiling SC master natively on Raspberry Pi Raspbian Jessie
 
 ##step1 (hardware setup)
+```
 1. connect an ethernet cable from the network router to the rpi 
 2. insert the sd card and usb soundcard 
 3. last connect usb power from a 5V@1A power supply
+```
 
 ##step2 (login & preparations)
+```
 1. ssh pi@raspberrypi.local #from your laptop, default password is raspberry 
 2. sudo raspi-config #change password, expand file system, reboot and log in again with ssh 
+```
 
 ##step3 (update the system, install required libraries & compilers)
+```
 1. sudo apt-get update
 2. sudo apt-get upgrade
 3. sudo apt-get install alsa-base libicu-dev libasound2-dev libsamplerate0-dev libsndfile1-dev libreadline-dev libxt-dev libudev-dev libavahi-client-dev libfftw3-dev cmake git gcc-4.8 g++-4.8 
+```
 
 ##step4 (compile & install jackd (no d-bus) )
+```
 1. git clone git://github.com/jackaudio/jack2.git --depth 1
 2. cd jack2
 3. ./waf configure --alsa #note: here we use the default gcc-4.9
@@ -56,8 +63,9 @@ step5 (compile & install sc master)
 12. rm -r supercollider
 13. sudo mv /usr/local/share/SuperCollider/SCClassLibrary/Common/GUI /usr/local/share/SuperCollider/SCClassLibrary/scide_scqt/GUI
 14. sudo mv /usr/local/share/SuperCollider/SCClassLibrary/JITLib/GUI /usr/local/share/SuperCollider/SCClassLibrary/scide_scqt/JITLibGUI
-
+```
 ##step6 (start jack & sclang & test)
+```
 1. jackd -P75 -dalsa -dhw:1 -p1024 -n3 -s -r44100 & #edit -dhw:1 to match your soundcard. usually it is 1 for usb
 2. sclang #should start sc and compile the class library with only 3 harmless class overwrites warnings
 s.boot #should boot the server
@@ -67,26 +75,32 @@ a.free
 a= {Mix(50.collect{RLPF.ar(SinOsc.ar)});DC.ar(0)}.play #benchmark
 s.dump #avgCPU should show ~19% for rpi2 and ~73% for rpi1
 a.free
-0.exit #quit sclang
-1. pkill jackd #quit jackd
+exit #quit sclang
+pkill jackd #quit jackd
+```
 
 ##(2) Python - pyOSC module install
 Python - pyOSC module install
 You need pyOSC module in Python to send OSC messages to SC
 
 Open the terminal and type the following:
+```
 1. ssh pi@raspberrypi.local #to log into pi (default username: pi and password: raspberry)
 2. sudo apt-get update
 3. sudo apt-get upgrade
 4. curl -O https://trac.v2.nl/raw-attachment/wiki/pyOSC/pyOSC-0.3.5b-5294.zip -k 
 5. unzip pyOSC-0.3.5b-5294.zip
 6. sudo python ./setup.py install
-
+```
 ##(3) Python simple code for OSC messaging to SC using a PIR sensor
 Now it is time to write the code in Python so the PIR OSC messages can be sent to SC server locally.
 
 Open the terminal and type the following:
-1. sudo nano filename.py #opens a blank sheet in Python named filename.py (I used “pirtest.py”)
+```
+1. sudo nano filename.py 
+```
+opens a blank sheet in Python named filename.py (I used “pirtest.py”)
+
 2. paste the following code into Python
 
 ```Python
@@ -147,7 +161,7 @@ ctrl x #to exit
 1. sudo nano filename.scd # choose a filename ( I used "mycode.scd")
 2. enter the following SC code (or your code):
 
-```javascript
+```
 (
 Server.default.waitForBoot{
 Task({
@@ -189,44 +203,46 @@ Now we will proceed to the final step. We need to create 2 files (autostart.sh a
 In the terminal type:
 
 1. sudo nano ~/autostart.sh #and add the following lines:
-
-1. #!/bin/bash
-2. /usr/local/bin/jackd -P75 -dalsa -dhw:1 -p1024 -n3 -s -r44100 &
-3. su root -c "sclang -D /home/pi/mycode.scd"
-
+```
+#!/bin/bash
+/usr/local/bin/jackd -P75 -dalsa -dhw:1 -p1024 -n3 -s -r44100 &
+su root -c "sclang -D /home/pi/mycode.scd"
+```
 (I used "mycode.scd", you can use your filename)
+
 Ctrl-o #to save
 Ctrl-x #to exit
 
 2. sudo nano pythonlauncher.sh #and add the following lines:
-
-1. #!/bin/sh
-2. pythonlauncher.sh
-3. cd /
-4. cd home/pi
-5. sudo python pirtest.py
-6. cd /
-
+```
+#!/bin/sh
+pythonlauncher.sh
+cd /
+cd home/pi
+sudo python pirtest.py
+cd /
+```
 (I used "pirtest.py" you can used your file here)
 
 Ok now we need to make these 2 files executable:
-
+```
 1. chmod +x !/autostart.sh
 2. chmod 755 pytholauncher.sh
-
+```
 Next step is to tell the machine to runs these files at reboot:
-
+```
 1. sudo crontab -e 
 2. paste the following lines:
 · @reboot /bin/bash /home/pi/autostart.sh
 · @reboot /bin/sh /home/pi/pythonlauncher.sh
-
+```
 Ctrl-o #to save
 Ctrl-x #to exit
 
 ##(6) Reboot et voilà
 
 Now that is all set it is time to reboot.
-
+```
 1. sudo reboot
+```
 (after reboot the project should be working, if not go through the steps again in case you missed something)
