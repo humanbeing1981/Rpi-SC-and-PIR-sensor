@@ -14,7 +14,7 @@ The purpose of this file is to illustrate the ability to connect and use a PIR s
 #Setup Steps
 ##(1) Compiling SC master natively on Raspberry Pi Raspbian Jessie
 
-###step1 (hardware setup)
+###A (hardware setup)
 
 ```javascript
 1. connect an ethernet cable from the network router to the rpi 
@@ -22,14 +22,14 @@ The purpose of this file is to illustrate the ability to connect and use a PIR s
 3. last connect usb power from a 5V@1A power supply
 ```
 
-###step2 (login & preparations)
+###B (login & preparations)
 
 ```javascript
 1. ssh pi@raspberrypi.local #from your laptop, default password is raspberry 
 2. sudo raspi-config #change password, expand file system, reboot and log in again with ssh 
 ```
 
-###step3 (update the system, install required libraries & compilers)
+###C (update the system, install required libraries & compilers)
 
 ```javascript
 1. sudo apt-get update
@@ -37,7 +37,7 @@ The purpose of this file is to illustrate the ability to connect and use a PIR s
 3. sudo apt-get install alsa-base libicu-dev libasound2-dev libsamplerate0-dev libsndfile1-dev libreadline-dev libxt-dev libudev-dev libavahi-client-dev libfftw3-dev cmake git gcc-4.8 g++-4.8 
 ```
 
-###step4 (compile & install jackd (no d-bus) )
+###D (compile & install jackd (no d-bus) )
 
 ```javascript
 1. git clone git://github.com/jackaudio/jack2.git --depth 1
@@ -54,7 +54,7 @@ The purpose of this file is to illustrate the ability to connect and use a PIR s
 ```
 Ctrl-o to save Ctrl-x to exit
 
-###step5 (compile & install sc master)
+###E (compile & install sc master)
 
 ```javascript
 1. git clone --recursive git://github.com/supercollider/supercollider.git supercollider
@@ -73,7 +73,7 @@ Ctrl-o to save Ctrl-x to exit
 14. sudo mv /usr/local/share/SuperCollider/SCClassLibrary/JITLib/GUI /usr/local/share/SuperCollider/SCClassLibrary/scide_scqt/JITLibGUI
 ```
 
-###step6 (start jack & sclang & test)
+###F (start jack & sclang & test)
 
 ```javascript
 1. jackd -P75 -dalsa -dhw:1 -p1024 -n3 -s -r44100 & #edit -dhw:1 (to match your soundcard. usually it is 1 for usb)
