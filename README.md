@@ -168,7 +168,7 @@ if  current_state != previous_state:
 ctrl o #to save
 ctrl x #to exit
 
-##(4) Simple ode for SC to test the osc messages coming from python using the PIR sensor. (you can put your code here).
+##(4) Simple code for SC to test the osc messages coming from python using the PIR sensor. (you can put your code here).
 
 1. sudo nano filename.scd # choose a filename ( I used "mycode.scd")
 2. enter the following SC code (or your code):
@@ -247,7 +247,7 @@ Ok now we need to make these 2 files executable:
 2. chmod 755 pytholauncher.sh
 ```
 
-Next step is to tell the machine to runs these files at reboot:
+Next step is to tell the machine to run these files at reboot:
 
 ```javascript
 1. sudo crontab -e 
