@@ -147,7 +147,7 @@ ctrl x #to exit
 1. sudo nano filename.scd # choose a filename ( I used "mycode.scd")
 2. enter the following SC code (or your code):
 
-```Python
+```javascript
 (
 Server.default.waitForBoot{
 Task({
