@@ -1,5 +1,5 @@
 #Purpose
-The purpose of this file is to illustrate the ability to connect and use a PIR sensor to RPi and use OSC messaging through Python script to address Supercollider to produce sound, all within RPi.
+The purpose of this file is to illustrate the ability to connect and use a PIR sensor to RPi and use OSC messaging through Python script to address SuperCollider to produce sound, all within RPi.
 
 ##Prerequisites
 1. Raspberry Pi 2
